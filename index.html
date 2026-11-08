@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="text-[11px] text-slate-400 mt-4 italic">Note: McDavid is currently threatening to shatter Wayne Gretzky's legendary single-season marks.</p>
+                <p class="text-[11px] text-slate-400 mt-4 italic">Note: McDavid is currently threatening to shatter Wayne Gretzky's historic single-season marks.</p>
             </div>
 
             <!-- Stat Card 3: Connor McDavid News / Spotlight -->
@@ -266,45 +266,5 @@
                         <h4 class="font-bold text-sm text-white mt-2 mb-1">Art Ross Race Heats Up Across the Western Conference</h4>
                         <p class="text-xs text-slate-400">Early-season scoring races intensify as top tier point-producers battle for the league lead.</p>
                     </div>
-                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> NHL Bulletin</span>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-400">
-        <p>Connor McDavid & Edmonton Oilers GitHub Dashboard &bull; Powered by Live NHL Statistics & Analytics</p>
-    </footer>
-
-    <!-- JavaScript for Live Clocks & User Timezone -->
-    <script>
-        // Detect User Timezone
-        const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        document.getElementById('user-timezone').textContent = userTz;
-
-        // Live Clock
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('live-clock').textContent = now.toLocaleTimeString();
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Convert target game time to User's Local Timezone
-        function formatGameTime() {
-            const targetGameUTC = new Date('2026-11-12T19:00:00-07:00'); // Example Oilers game slot
-            
-            document.getElementById('next-game-local-date').textContent = targetGameUTC.toLocaleDateString(undefined, {
-                weekday: 'short', month: 'short', day: 'numeric'
-            });
-
-            document.getElementById('next-game-time').textContent = targetGameUTC.toLocaleTimeString(undefined, {
-                hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
-            });
-        }
-        formatGameTime();
-    </script>
-</body>
-</html>
+                    <span class="text-[11px] text-slate-500
+                    
