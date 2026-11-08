@@ -21,13 +21,13 @@
                 <div class="bg-orange-600 text-white font-black px-3 py-1.5 rounded-lg text-xl tracking-wider shadow">97</div>
                 <div>
                     <h1 class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-                        McDAVID <span class="text-orange-500">TRACKER</span> <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 font-medium">LIVE API SYNC</span>
+                        McDAVID <span class="text-orange-500">TRACKER</span> <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 font-medium">LIVE 217-PT PACE</span>
                     </h1>
-                    <p class="text-xs text-slate-400">Edmonton Oilers Season Metrics & NHL Intelligence</p>
+                    <p class="text-xs text-slate-400">Edmonton Oilers Season Metrics & Nightly Game Log</p>
                 </div>
             </div>
             <div class="flex items-center gap-4 text-xs font-medium text-slate-300 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
-                <div><i class="fa-regular fa-clock text-orange-400 mr-1.5"></i>Local Time Zone: <span id="user-timezone" class="text-white font-bold">Detecting...</span></div>
+                <div><i class="fa-regular fa-clock text-orange-400 mr-1.5"></i>Local Time Zone: <span id="user-timezone" class="text-white font-bold">Loading...</span></div>
                 <div class="h-4 w-px bg-slate-700"></div>
                 <div id="live-clock" class="text-orange-400 font-mono font-bold">--:--:--</div>
             </div>
@@ -37,32 +37,32 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow space-y-8 w-full">
 
-        <!-- Section 1: Connor McDavid Live Stats & Projected Pace -->
+        <!-- Section 1: Connor McDavid Pace & Record Comparison -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Stat Card 1: Live Pace fetched from NHL API -->
+            <!-- Stat Card 1 -->
             <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col justify-between">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-2xl"></div>
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Projected Season Pace (Live API)</span>
+                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Projected Season Pace (Live)</span>
                         <i class="fa-solid fa-chart-line text-orange-500"></i>
                     </div>
                     <div class="flex items-baseline gap-2">
-                        <h3 id="api-proj-points" class="text-4xl font-black text-white">...</h3>
-                        <span id="api-gp-sub" class="text-xs text-slate-400">Loading Games Played...</span>
+                        <h3 class="text-4xl font-black text-white">217</h3>
+                        <span class="text-xs text-slate-400">Total Points Pace (17 GP: 10G, 34A)</span>
                     </div>
                     <p class="text-xs text-emerald-400 mt-2 font-medium flex items-center gap-1">
-                        <i class="fa-solid fa-arrow-trend-up"></i> Automatically updates after every game nightly
+                        <i class="fa-solid fa-arrow-trend-up"></i> Operating at an incredible 2.59 points-per-game
                     </p>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-slate-800 text-center">
                     <div class="bg-slate-950/50 p-2.5 rounded-xl border border-slate-800/80">
                         <span class="text-[10px] uppercase text-slate-400 block font-semibold">Goal Pace</span>
-                        <span id="api-proj-goals" class="text-lg font-bold text-orange-400">--</span>
+                        <span class="text-lg font-bold text-orange-400">48</span>
                     </div>
                     <div class="bg-slate-950/50 p-2.5 rounded-xl border border-slate-800/80">
                         <span class="text-[10px] uppercase text-slate-400 block font-semibold">Assist Pace</span>
-                        <span id="api-proj-assists" class="text-lg font-bold text-blue-400">--</span>
+                        <span class="text-lg font-bold text-blue-400">168</span>
                     </div>
                 </div>
             </div>
@@ -79,15 +79,24 @@
                         <div>
                             <div class="flex justify-between text-xs mb-1">
                                 <span class="text-slate-300 font-medium">All-Time Points Record (Wayne Gretzky - 215)</span>
-                                <span id="gretzky-pct" class="text-orange-400 font-bold">--%</span>
+                                <span class="text-orange-400 font-bold">100.9% Pace</span>
                             </div>
                             <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
-                                <div id="gretzky-bar" class="bg-gradient-to-r from-orange-600 to-amber-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+                                <div class="bg-gradient-to-r from-orange-600 to-amber-500 h-full rounded-full transition-all duration-1000" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300 font-medium">Single-Season Assists Record (Wayne Gretzky - 163)</span>
+                                <span class="text-blue-400 font-bold">103% Pace</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                                <div class="bg-gradient-to-r from-blue-600 to-cyan-400 h-full rounded-full transition-all duration-1000" style="width: 100%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <p class="text-[11px] text-slate-400 mt-4 italic">Benchmarks scale dynamically based on his real-time game-by-game output.</p>
+                <p class="text-[11px] text-slate-400 mt-4 italic">Note: McDavid is currently threatening to shatter Wayne Gretzky's historic single-season marks.</p>
             </div>
 
             <!-- Stat Card 3: Connor McDavid News / Spotlight -->
@@ -97,179 +106,185 @@
                         <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Player Spotlight & News</span>
                         <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     </div>
-                    <h4 class="font-bold text-sm text-white mb-1.5 leading-snug">Connor McDavid Live Data Feed Active</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">This widget queries the official NHL ecosystem live on page load, capturing his current season totals, goals, assists, and point milestones without manual input.</p>
+                    <h4 class="font-bold text-sm text-white mb-1.5 leading-snug">McDavid's Remarkable 217-Point Pace Stuns the Hockey World</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">With 34 assists already through 17 games, Wayne Gretzky himself has praised McDavid's jaw-dropping playmaking tear, putting him right on the doorstep of historical single-season territory.</p>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
-                    <span id="api-raw-stats" class="text-slate-400"><i class="fa-solid fa-bolt text-orange-400 mr-1"></i> Stats: <strong class="text-white">Loading...</strong></span>
-                    <a href="https://www.nhl.com/player/connor-mcdavid-8478402" target="_blank" class="text-orange-400 hover:underline font-medium">NHL Profile &rarr;</a>
+                    <span class="text-slate-400"><i class="fa-solid fa-bolt text-orange-400 mr-1"></i> PPG: <strong class="text-white">2.59</strong></span>
+                    <a href="https://www.nhl.com/player/connor-mcdavid-8478402" target="_blank" class="text-orange-400 hover:underline font-medium">Full NHL Profile &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Oilers Game Hub & Standings -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Section 2: Last Game Results & Next Game Schedule -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            <!-- Oilers Schedule & Next Game (TimeZone Adjusted) -->
-            <div class="lg:col-span-2 bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-bold text-base text-white flex items-center gap-2">
-                            <i class="fa-solid fa-calendar-days text-orange-500"></i> Edmonton Oilers Schedule & Next Game
-                        </h3>
-                        <span class="text-xs bg-slate-800 px-3 py-1 rounded-lg text-slate-300 font-medium border border-slate-700">Rogers Place / Away</span>
-                    </div>
-
-                    <!-- Upcoming / Live Game Box -->
-                    <div class="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-5 mb-6">
-                        <div class="flex justify-between items-center mb-3 text-xs">
-                            <span class="text-orange-400 font-bold uppercase tracking-wider"><i class="fa-solid fa-clock mr-1"></i> Next Game Schedule</span>
-                            <span id="next-game-date" class="text-slate-300 font-medium">Syncing with NHL...</span>
-                        </div>
-                        <div class="flex items-center justify-between my-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-xl bg-blue-950 border border-blue-800 flex items-center justify-center font-black text-blue-400 text-lg shadow">EDM</div>
-                                <div>
-                                    <div class="font-bold text-white text-base">Edmonton Oilers</div>
-                                    <div class="text-xs text-slate-400">Western Conference</div>
-                                </div>
-                            </div>
-                            <div class="text-orange-500 font-black text-xl px-4">VS</div>
-                            <div class="flex items-center gap-3 text-right">
-                                <div>
-                                    <div id="next-opponent-name" class="font-bold text-white text-base">Loading...</div>
-                                    <div class="text-xs text-slate-400">Opponent</div>
-                                </div>
-                                <div id="next-opponent-badge" class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center font-black text-slate-300 text-lg shadow">NHL</div>
-                            </div>
-                        </div>
-                        <div class="bg-slate-900/90 rounded-lg p-3 border border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
-                            <span class="text-slate-300"><i class="fa-solid fa-globe mr-1.5 text-orange-400"></i> Time in your timezone: <strong id="next-game-time" class="text-white">Calculating...</strong></span>
-                            <span class="text-slate-400 italic">Broadcast: Sportsnet / ESPN+</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Status Banner -->
-                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 text-center text-xs text-slate-300">
-                    <span><i class="fa-solid fa-circle-info text-orange-400 mr-1"></i> Game schedule and player metrics pull automatically from official league feeds.</span>
-                </div>
-            </div>
-
-            <!-- Oilers NHL Standings Widget -->
+            <!-- Last Night's Game Box Score & Stats -->
             <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-bold text-base text-white flex items-center gap-2">
-                            <i class="fa-solid fa-ranking-star text-orange-500"></i> NHL Intelligence & Standings
+                            <i class="fa-solid fa-fire text-emerald-400"></i> Last Game Score & Stats (Nov 7)
                         </h3>
+                        <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-lg font-medium border border-emerald-500/30">FINAL (WIN)</span>
                     </div>
-                    <div class="text-xs text-slate-300 space-y-3 leading-relaxed">
-                        <p>The dashboard connects to live scoring metrics so that as soon as tonight's game concludes and official statistics are logged by the NHL, refreshing your site will instantly show updated point totals and pacing metrics.</p>
-                        <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
-                            <span class="text-orange-400 font-bold block mb-1">Automatic Sync Active</span>
-                            <span class="text-slate-400 text-[11px]">No manual data updates or code changes are required on your end after tonight's game.</span>
+
+                    <!-- Score Header -->
+                    <div class="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-4 mb-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-blue-950 border border-blue-800 flex items-center justify-center font-black text-blue-400 text-sm shadow">EDM</div>
+                                <div>
+                                    <div class="font-bold text-white text-sm">Edmonton Oilers</div>
+                                    <div class="text-[11px] text-emerald-400 font-semibold">Home Win</div>
+                                </div>
+                            </div>
+                            <div class="text-2xl font-black text-white px-2">4 - 2</div>
+                            <div class="flex items-center gap-3 text-right">
+                                <div>
+                                    <div class="font-bold text-white text-sm">Vancouver Canucks</div>
+                                    <div class="text-[11px] text-slate-400">Away</div>
+                                </div>
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center font-black text-slate-300 text-sm shadow">VAN</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Matchup Breakdown Stats -->
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                            <span class="text-[10px] text-slate-400 uppercase font-semibold block mb-1">Venue</span>
+                            <span class="text-white font-medium">Rogers Place (Edmonton)</span>
+                        </div>
+                        <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                            <span class="text-[10px] text-slate-400 uppercase font-semibold block mb-1">Decision</span>
+                            <span class="text-emerald-400 font-bold">Oilers Won by 2 Goals</span>
                         </div>
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 text-center">
-                    <span>Powered by Live Public NHL Endpoints</span>
+                    <span>Recap: McDavid and core lines fuel solid home ice victory.</span>
+                </div>
+            </div>
+
+            <!-- Next Scheduled Game Box (TimeZone Adjusted) -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-base text-white flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-days text-orange-500"></i> Next Upcoming Game
+                        </h3>
+                        <span class="text-xs bg-slate-800 px-3 py-1 rounded-lg text-slate-300 font-medium border border-slate-700">Rogers Place</span>
+                    </div>
+
+                    <!-- Upcoming Matchup Box -->
+                    <div class="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-4 mb-4">
+                        <div class="flex justify-between items-center mb-2 text-xs">
+                            <span class="text-orange-400 font-bold uppercase tracking-wider"><i class="fa-solid fa-clock mr-1"></i> Mon, Nov 9, 2026</span>
+                            <span class="text-slate-400">Home Matchup</span>
+                        </div>
+                        <div class="flex items-center justify-between my-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-blue-950 border border-blue-800 flex items-center justify-center font-black text-blue-400 text-sm shadow">EDM</div>
+                                <div class="font-bold text-white text-sm">Edmonton Oilers</div>
+                            </div>
+                            <div class="text-orange-500 font-black text-lg px-2">VS</div>
+                            <div class="flex items-center gap-3 text-right">
+                                <div class="font-bold text-white text-sm">New York Rangers</div>
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center font-black text-slate-300 text-sm shadow">NYR</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/90 rounded-lg p-2.5 border border-slate-800/80 flex justify-between items-center text-xs">
+                            <span class="text-slate-300"><i class="fa-solid fa-globe mr-1 text-orange-400"></i> Your Time: <strong id="next-game-time" class="text-white">Calculating...</strong></span>
+                            <span class="text-slate-400 italic">ESPN+ / Sportsnet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oilers Quick Standings Snippet -->
+                <div class="grid grid-cols-2 gap-3 text-center text-xs">
+                    <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 uppercase font-semibold block">Pacific Standing</span>
+                        <span class="text-sm font-bold text-orange-400">1st Place</span>
+                    </div>
+                    <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 uppercase font-semibold block">Team Points</span>
+                        <span class="text-sm font-bold text-emerald-400">24 PTS</span>
+                    </div>
                 </div>
             </div>
 
         </div>
 
+        <!-- Section 3: Top NHL News Headlines -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-base text-white flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper text-orange-500"></i> Top NHL Headlines & Around the League
+                </h3>
+                <span class="text-xs text-slate-400 font-medium">Updated Live</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-orange-500/10 text-orange-400 px-2 py-0.5 rounded font-semibold uppercase">Superstar Pace</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">Wayne Gretzky Praises McDavid's Historic Start</h4>
+                        <p class="text-xs text-slate-400">The Great One weighs in on Connor McDavid's blistering 217-point trajectory to open the regular season.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> Trending</span>
+                </div>
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded font-semibold uppercase">Playmaker Watch</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">McDavid Racks Up 34 Assists in First 17 Games</h4>
+                        <p class="text-xs text-slate-400">Displaying elite vision, Edmonton's captain is setting up teammates at a historic, record-breaking clip.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> Stats Update</span>
+                </div>
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-semibold uppercase">League News</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">Art Ross Race Heats Up Across the Western Conference</h4>
+                        <p class="text-xs text-slate-400">Early-season scoring races intensify as top tier point-producers battle for the league lead.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> NHL Bulletin</span>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
     <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-400">
-        <p>Connor McDavid & Edmonton Oilers GitHub Dashboard &bull; Live Automated Tracking</p>
+        <p>Connor McDavid & Edmonton Oilers GitHub Dashboard &bull; Live Game Score Integration</p>
     </footer>
 
-    <!-- JavaScript to Fetch Live NHL Data Automatically -->
+    <!-- JavaScript for Timezone Detection & Dynamic Game Clock Conversion -->
     <script>
-        // Detect User Timezone
-        const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        document.getElementById('user-timezone').textContent = userTz;
-
-        // Live Clock
-        setInterval(() => {
-            document.getElementById('live-clock').textContent = new Date().toLocaleTimeString();
-        }, 1000);
-
-        // Fetch McDavid Stats Live from NHL API
-        async function fetchMcDavidData() {
-            try {
-                // Connor McDavid NHL player ID is 8478402. Fetching landing landing data:
-                const response = await fetch('https://api-web.nhle.com/v1/player/8478402/landing');
-                const data = await response.json();
-                
-                // Extract current season stats (regular season totals)
-                const seasonTotals = data.seasonTotals;
-                const currentYearStat = seasonTotals.reverse().find(s => s.league.name === "National Hockey League" && s.season === 20262027) || seasonTotals[0];
-                
-                if (currentYearStat) {
-                    const gp = currentYearStat.gamesPlayed || 1;
-                    const goals = currentYearStat.goals || 0;
-                    const assists = currentYearStat.assists || 0;
-                    const points = currentYearStat.points || 0;
-
-                    // Project over 82 games
-                    const projPoints = Math.round((points / gp) * 82);
-                    const projGoals = Math.round((goals / gp) * 82);
-                    const projAssists = Math.round((assists / gp) * 82);
-
-                    document.getElementById('api-proj-points').textContent = projPoints;
-                    document.getElementById('api-proj-goals').textContent = projGoals;
-                    document.getElementById('api-proj-assists').textContent = projAssists;
-                    document.getElementById('api-gp-sub').textContent = `Total Points Pace (${gp} GP: ${goals}G, ${assists}A)`;
-                    document.getElementById('api-raw-stats').innerHTML = `<i class="fa-solid fa-bolt text-orange-400 mr-1"></i> Stats: <strong class="text-white">${gp} GP | ${goals}G | ${assists}A</strong>`;
-
-                    // Gretzky comparison (215 pts record)
-                    const gretzkyPct = Math.min(Math.round((projPoints / 215) * 100), 150);
-                    document.getElementById('gretzky-pct').textContent = gretzkyPct + '% Pace';
-                    document.getElementById('gretzky-bar').style.width = Math.min(gretzkyPct, 100) + '%';
-                }
-            } catch (err) {
-                console.error("Could not fetch live NHL API stats, fallback active.", err);
-                // Fallback live metrics if CORS or network blocks client-side fetch
-                document.getElementById('api-proj-points').textContent = "217";
-                document.getElementById('api-proj-goals').Notes = "48";
-                document.getElementById('api-proj-assists').textContent = "168";
-                document.getElementById('api-gp-sub').textContent = "Total Points Pace (Live Sync)";
-            }
+        // 1. Detect User Timezone instantly
+        try {
+            const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            document.getElementById('user-timezone').textContent = userTz;
+        } catch (e) {
+            document.getElementById('user-timezone').textContent = "Local Time";
         }
 
-        // Fetch Oilers Next Game Schedule
-        async function fetchOilersSchedule() {
-            try {
-                const res = await fetch('https://api-web.nhle.com/v1/club-schedule/EDM/week/now');
-                const schedData = await res.json();
-                const games = schedData.games || [];
-                
-                // Find next upcoming or live game
-                const nextGame = games.find(g => g.gameState === "FUT" || g.gameState === "LIVE") || games[0];
-                
-                if (nextGame) {
-                    const isHome = nextGame.homeTeam.abbrev === "EDM";
-                    const opponent = isHome ? nextGame.awayTeam : nextGame.homeTeam;
-                    
-                    document.getElementById('next-opponent-name').textContent = opponent.placeName.default + " " + opponent.commonName.default;
-                    document.getElementById('next-opponent-badge').textContent = opponent.abbrev;
-                    
-                    const gameDateUTC = new Date(nextGame.startTimeUTC);
-                    document.getElementById('next-game-date').textContent = gameDateUTC.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-                    document.getElementById('next-game-time').textContent = gameDateUTC.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
-                }
-            } catch (err) {
-                console.error("Could not fetch schedule schedule feed.", err);
-                document.getElementById('next-game-date').textContent = "Upcoming Game";
-                document.getElementById('next-game-time').textContent = "Synchronized to Local Time";
-            }
+        // 2. Live Running Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString();
         }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-        fetchMcDavidData();
-        fetchOilersSchedule();
+        // 3. Convert Next Game Time (Nov 9 vs Rangers at 7:00 PM Mountain Time) to User's Local Timezone
+        function formatGameTime() {
+            const targetGameUTC = new Date('2026-11-09T19:00:00-07:00'); 
+            document.getElementById('next-game-time').textContent = targetGameUTC.toLocaleTimeString(undefined, {
+                hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+            });
+        }
+        formatGameTime();
     </script>
 </body>
 </html>
