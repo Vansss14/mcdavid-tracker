@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connor McDavid & Edmonton Oilers Live Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Outfit', sans-serif; }
+        .oilers-orange { color: #FC4C02; }
+        .oilers-blue { background-color: #041E42; }
+        .oilers-blue-border { border-color: #041E42; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="oilers-blue border-b border-slate-800 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-orange-600 text-white font-black px-3 py-1.5 rounded-lg text-xl tracking-wider shadow">97</div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight flex items-center gap-2">
+                        McDAVID <span class="text-orange-500">TRACKER</span> <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 font-medium">LIVE</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Edmonton Oilers Season Metrics & NHL Intelligence</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-medium text-slate-300 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
+                <div><i class="fa-regular fa-clock text-orange-400 mr-1.5"></i>Local Time Zone: <span id="user-timezone" class="text-white font-bold">Detecting...</span></div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div id="live-clock" class="text-orange-400 font-mono font-bold">--:--:--</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow space-y-8 w-full">
+
+        <!-- Section 1: Connor McDavid Pace & Record Comparison -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Stat Card 1 -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-2xl"></div>
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Projected Season Pace</span>
+                        <i class="fa-solid fa-chart-line text-orange-500"></i>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <h3 id="proj-points" class="text-4xl font-black text-white">138</h3>
+                        <span class="text-xs text-slate-400">Total Points Pace</span>
+                    </div>
+                    <p class="text-xs text-emerald-400 mt-2 font-medium flex items-center gap-1">
+                        <i class="fa-solid fa-arrow-trend-up"></i> Based on 82-game regular season trajectory
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-slate-800 text-center">
+                    <div class="bg-slate-950/50 p-2.5 rounded-xl border border-slate-800/80">
+                        <span class="text-[10px] uppercase text-slate-400 block font-semibold">Goal Pace</span>
+                        <span id="proj-goals" class="text-lg font-bold text-orange-400">48</span>
+                    </div>
+                    <div class="bg-slate-950/50 p-2.5 rounded-xl border border-slate-800/80">
+                        <span class="text-[10px] uppercase text-slate-400 block font-semibold">Assist Pace</span>
+                        <span id="proj-assists" class="text-lg font-bold text-blue-400">90</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stat Card 2: Record Comparison -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl"></div>
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Comparison to NHL Record</span>
+                        <i class="fa-solid fa-trophy text-amber-400"></i>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300 font-medium">Single-Season Points Record (Wayne Gretzky - 215)</span>
+                                <span id="record-pct-points" class="text-orange-400 font-bold">64.2%</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                                <div id="bar-points" class="bg-gradient-to-r from-orange-600 to-amber-500 h-full rounded-full transition-all duration-1000" style="width: 64.2%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300 font-medium">Single-Season Goals Record (Wayne Gretzky / Brett Hull - 92)</span>
+                                <span id="record-pct-goals" class="text-orange-400 font-bold">52.1%</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                                <div id="bar-goals" class="bg-gradient-to-r from-blue-600 to-orange-500 h-full rounded-full transition-all duration-1000" style="width: 52.1%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-400 mt-4 italic">Note: Benchmarked against historical 82-game single-season records.</p>
+            </div>
+
+            <!-- Stat Card 3: Connor McDavid News / Spotlight -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Player Spotlight & News</span>
+                        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    </div>
+                    <h4 id="mcdavid-news-title" class="font-bold text-sm text-white mb-1.5 leading-snug">McDavid Continues Elite Art Ross & Hart Trophy Campaign</h4>
+                    <p id="mcdavid-news-desc" class="text-xs text-slate-400 leading-relaxed">Consistently generating explosive offensive pressure, ranking near the absolute peak of NHL EDGE speed metrics (over 24 MPH top skating bursts) and driving Edmonton's top-tier forward units.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
+                    <span class="text-slate-400"><i class="fa-solid fa-bolt text-orange-400 mr-1"></i> Max Speed: <strong class="text-white">24.01 MPH</strong></span>
+                    <a href="https://www.nhl.com/player/connor-mcdavid-8478402" target="_blank" class="text-orange-400 hover:underline font-medium">Full NHL Profile &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Oilers Game Hub (Live / Next Game & Standings) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Oilers Schedule & Next Game (TimeZone Adjusted) -->
+            <div class="lg:col-span-2 bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-base text-white flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-days text-orange-500"></i> Edmonton Oilers Game Schedule
+                        </h3>
+                        <span class="text-xs bg-slate-800 px-3 py-1 rounded-lg text-slate-300 font-medium border border-slate-700">Rogers Place / Away</span>
+                    </div>
+
+                    <!-- Upcoming / Live Game Box -->
+                    <div class="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-5 mb-6">
+                        <div class="flex justify-between items-center mb-3 text-xs">
+                            <span class="text-orange-400 font-bold uppercase tracking-wider"><i class="fa-solid fa-clock mr-1"></i> Next Scheduled Matchup</span>
+                            <span id="next-game-local-date" class="text-slate-300 font-medium">Loading Date...</span>
+                        </div>
+                        <div class="flex items-center justify-between my-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-blue-950 border border-blue-800 flex items-center justify-center font-black text-blue-400 text-lg shadow">EDM</div>
+                                <div>
+                                    <div class="font-bold text-white text-base">Edmonton Oilers</div>
+                                    <div class="text-xs text-slate-400">Home / Western Conference</div>
+                                </div>
+                            </div>
+                            <div class="text-orange-500 font-black text-xl px-4">VS</div>
+                            <div class="flex items-center gap-3 text-right">
+                                <div>
+                                    <div id="opponent-name" class="font-bold text-white text-base">Columbus Blue Jackets</div>
+                                    <div class="text-xs text-slate-400">Opponent</div>
+                                </div>
+                                <div id="opponent-badge" class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center font-black text-slate-300 text-lg shadow">CBJ</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/90 rounded-lg p-3 border border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
+                            <span class="text-slate-300"><i class="fa-solid fa-globe mr-1.5 text-orange-400"></i> Time in your timezone: <strong id="next-game-time" class="text-white">Calculating...</strong></span>
+                            <span class="text-slate-400 italic">Broadcast: Sportsnet / ESPN+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Form / Quick Stats -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 uppercase font-semibold block">Record</span>
+                        <span class="text-sm font-bold text-white">41-30-11</span>
+                    </div>
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 uppercase font-semibold block">Points</span>
+                        <span class="text-sm font-bold text-emerald-400">93 PTS</span>
+                    </div>
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 uppercase font-semibold block">Pacific Standing</span>
+                        <span class="text-sm font-bold text-orange-400">2nd Place</span>
+                    </div>
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 uppercase font-semibold block">Goal Differential</span>
+                        <span class="text-sm font-bold text-blue-400">+13</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oilers NHL Standings Widget -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-base text-white flex items-center gap-2">
+                            <i class="fa-solid fa-ranking-star text-orange-500"></i> Pacific Division Standings
+                        </h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left">
+                            <thead class="text-slate-400 uppercase bg-slate-950 border-b border-slate-800">
+                                <tr>
+                                    <th class="py-2.5 px-3 rounded-l-lg">Team</th>
+                                    <th class="py-2.5 px-2 text-center">GP</th>
+                                    <th class="py-2.5 px-2 text-center">PTS</th>
+                                    <th class="py-2.5 px-3 rounded-r-lg text-right">DIFF</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/60 font-medium">
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-3 text-slate-300">1. Vegas Golden Knights</td>
+                                    <td class="py-2.5 px-2 text-center">82</td>
+                                    <td class="py-2.5 px-2 text-center text-white font-bold">95</td>
+                                    <td class="py-2.5 px-3 text-right text-emerald-400">+15</td>
+                                </tr>
+                                <tr class="bg-orange-500/10 border-l-2 border-orange-500 font-semibold">
+                                    <td class="py-2.5 px-3 text-white">2. Edmonton Oilers</td>
+                                    <td class="py-2.5 px-2 text-center">82</td>
+                                    <td class="py-2.5 px-2 text-center text-orange-400 font-bold">93</td>
+                                    <td class="py-2.5 px-3 text-right text-emerald-400">+13</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-3 text-slate-300">3. Anaheim Ducks</td>
+                                    <td class="py-2.5 px-2 text-center">82</td>
+                                    <td class="py-2.5 px-2 text-center text-white font-bold">92</td>
+                                    <td class="py-2.5 px-3 text-right text-rose-400">-15</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-3 text-slate-300">4. Los Angeles Kings</td>
+                                    <td class="py-2.5 px-2 text-center">82</td>
+                                    <td class="py-2.5 px-2 text-center text-white font-bold">90</td>
+                                    <td class="py-2.5 px-3 text-right text-rose-400">-22</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-3 text-slate-300">5. San Jose Sharks</td>
+                                    <td class="py-2.5 px-2 text-center">82</td>
+                                    <td class="py-2.5 px-2 text-center text-white font-bold">86</td>
+                                    <td class="py-2.5 px-3 text-right text-rose-400">-41</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 text-center">
+                    <span>Playoff Position: Clinched 2nd in Pacific Division</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Section 3: Top NHL News Headlines -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-base text-white flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper text-orange-500"></i> Top NHL Headlines & Around the League
+                </h3>
+                <span class="text-xs text-slate-400 font-medium">Updated Live</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded font-semibold uppercase">Game Recap</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">Draisaitl Scores Twice as Oilers Hold Off Canucks</h4>
+                        <p class="text-xs text-slate-400">Leon Draisaitl leads the charge with two critical goals, securing a hard-fought divisional victory on home ice.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> Recent Action</span>
+                </div>
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded font-semibold uppercase">Milestone</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">Sidney Crosby Passes Marcel Dionne for 6th All-Time Points</h4>
+                        <p class="text-xs text-slate-400">The legend continues climbing the NHL historical leaderboards with another stellar multi-point performance.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> League News</span>
+                </div>
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-semibold uppercase">Global Series</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">Hurricanes & Kraken Prepare for Overseas Travel to Finland</h4>
+                        <p class="text-xs text-slate-400">NHL teams wrap up domestic schedules ahead of the highly anticipated 2026 Global Series matchups in Tampere, Finland.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> Upcoming Event</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-
