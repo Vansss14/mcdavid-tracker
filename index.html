@@ -213,4 +213,98 @@
                                     <td class="py-2.5 px-3 text-right text-slate-400">--</td>
                                 </tr>
                                 <tr class="hover:bg-slate-800/40">
-                                    <td class="py-
+                                    <td class="py-2.5 px-3 text-slate-300">3. Vancouver Canucks</td>
+                                    <td class="py-2.5 px-2 text-center">17</td>
+                                    <td class="py-2.5 px-2 text-center text-white font-bold">--</td>
+                                    <td class="py-2.5 px-3 text-right text-slate-400">--</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-3 text-slate-300">4. Los Angeles Kings</td>
+                                    <td class="py-2.5 px-2 text-center">17</td>
+                                    <td class="py-2.5 px-2 text-center text-white font-bold">--</td>
+                                    <td class="py-2.5 px-3 text-right text-slate-400">--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 text-center">
+                    <span>Live Standings Update Synchronized</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Section 3: Top NHL News Headlines -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-base text-white flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper text-orange-500"></i> Top NHL Headlines & Around the League
+                </h3>
+                <span class="text-xs text-slate-400 font-medium">Updated Live</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-orange-500/10 text-orange-400 px-2 py-0.5 rounded font-semibold uppercase">Superstar Pace</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">Wayne Gretzky Praises McDavid's Historic Start</h4>
+                        <p class="text-xs text-slate-400">The Great One weighs in on Connor McDavid's blistering 217-point trajectory to open the regular season.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> Trending</span>
+                </div>
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded font-semibold uppercase">Playmaker Watch</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">McDavid Racks Up 34 Assists in First 17 Games</h4>
+                        <p class="text-xs text-slate-400">Displaying elite vision, Edmonton's captain is setting up teammates at a historic, record-breaking clip.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> Stats Update</span>
+                </div>
+                <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-semibold uppercase">League News</span>
+                        <h4 class="font-bold text-sm text-white mt-2 mb-1">Art Ross Race Heats Up Across the Western Conference</h4>
+                        <p class="text-xs text-slate-400">Early-season scoring races intensify as top tier point-producers battle for the league lead.</p>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-4 block"><i class="fa-regular fa-clock mr-1"></i> NHL Bulletin</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-400">
+        <p>Connor McDavid & Edmonton Oilers GitHub Dashboard &bull; Powered by Live NHL Statistics & Analytics</p>
+    </footer>
+
+    <!-- JavaScript for Live Clocks & User Timezone -->
+    <script>
+        // Detect User Timezone
+        const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        document.getElementById('user-timezone').textContent = userTz;
+
+        // Live Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Convert target game time to User's Local Timezone
+        function formatGameTime() {
+            const targetGameUTC = new Date('2026-11-12T19:00:00-07:00'); // Example Oilers game slot
+            
+            document.getElementById('next-game-local-date').textContent = targetGameUTC.toLocaleDateString(undefined, {
+                weekday: 'short', month: 'short', day: 'numeric'
+            });
+
+            document.getElementById('next-game-time').textContent = targetGameUTC.toLocaleTimeString(undefined, {
+                hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+            });
+        }
+        formatGameTime();
+    </script>
+</body>
+</html>
